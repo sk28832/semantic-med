@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# SemanticMed: Voice-Activated Notation Service for Healthcare Providers
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Here is a link to the live webpage: https://semantic-med-ai.vercel.app/
 
-## Available Scripts
+<img width="1471" alt="Screenshot 2023-12-04 at 12 45 53 AM" src="https://github.com/sk28832/semantic-med/assets/33585911/5fc5ead9-3b65-400f-8c10-9044ed22c157">
 
-In the project directory, you can run:
 
-### `npm start`
+## Abstract
+SemanticMed represents a breakthrough in healthcare IT, offering a Siri-like voice-activated notation service designed to alleviate the administrative burden on healthcare providers. This innovative software aims to streamline data entry processes, thus optimizing the time spent on patient care.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Background
+With the advent of digitization in healthcare, challenges such as decreased patient-provider interaction and increased administrative load have become prominent. SemanticMed seeks to address these issues by introducing an intuitive and cost-effective voice recognition tool that integrates seamlessly with existing Electronic Health Records (EHRs).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Problem Statement
+SemanticMed tackles two primary challenges in modern healthcare settings:
+- Reduced patient-provider interaction due to time spent behind computer screens for data entry.
+- Excessive administrative burden placed on providers, leading to potential errors and burnout.
 
-### `npm test`
+## Solution
+Utilizing React's speech-to-text capabilities coupled with OpenAI's GPT for intelligent data processing, SemanticMed enables the recording of essential patient information through simple voice commands. The result is an up-to-date patient chart that reflects the latest vitals, symptoms, lab results, and other pertinent health data.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Implementation
+- **Frontend**: Developed using React, deployed on Vercel for seamless user interaction.
+- **Backend**: Robust backend services running on Heroku, responsible for processing and converting audio data into structured text for EHR updates.
 
-### `npm run build`
+## Outcome and Further Work
+SemanticMed has successfully demonstrated the capability to handle audio inputs, transcribe them, and convert them into meaningful updates to patient charts. Future iterations aim to integrate FHIR standards with platforms like OpenEMR to further enhance the scope and functionality.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Contact
+- Shreyank Kadadi - shreyankkadadi@gmail.com
