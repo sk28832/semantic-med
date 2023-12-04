@@ -1,29 +1,43 @@
 from flask import Flask, request, jsonify
-from google.cloud import speech_v1p1beta1 as speech
+from flask_cors import CORS
+import openai
+from dotenv import load_dotenv
 import os
-
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'semanticmed-a8f84dbf0ee3.json'
-client = speech.SpeechClient()
+import traceback
 
 app = Flask(__name__)
+CORS(app)
 
-@app.route('/transcribe', methods=['POST'])
-def transcribe_audio():
-    audio_file = request.files['file']
-    audio = speech.RecognitionAudio(content=audio_file.read())
-    config = speech.RecognitionConfig(
-        encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
-        sample_rate_hertz=16000,
-        language_code='en-US',
-    )
+load_dotenv()  
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
-    response = client.recognize(config=config, audio=audio)
+@app.route("/process_transcription", methods=["POST"])
+def process_transcription():
+    transcription = request.json.get("transcription", "")
 
-    # Collecting the transcription results
-    for result in response.results:
-        transcription = result.alternatives[0].transcript
+    system_message = '''You are a helpful assistant designed to output JSON. Based on the provided transcription
+                      fill out the patient's information in a JSON format with the following fields:
+                      Name, Age, Gender, Date of Birth, Current Medications, and Allergies.
+                      The corresponding keys in the json should be 'name','age','gender','dob','currentMedications','allergies'
+                      If the transcription does not contain specific information for a field, leave that field blank.'''
 
-    return jsonify({'transcription': transcription})
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo-1106",
+            response_format={"type": "json_object"},
+            messages=[
+                {"role": "system", "content": system_message},
+                {"role": "user", "content": transcription}
+            ]
+        )
+        patient_info = response.choices[0].message['content']
 
-if __name__ == '__main__':
+        return jsonify({"patientData": patient_info}), 200
+    except Exception as e:
+        print("An error occurred:", e)
+        traceback.print_exc()  
+        return jsonify({"error": str(e)}), 500
+
+
+if __name__ == "__main__":
     app.run(debug=True)

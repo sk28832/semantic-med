@@ -1,18 +1,66 @@
-// TranscriptionPage.js
-import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container, Row, Col, DropdownButton, Dropdown } from 'react-bootstrap';
 import TranscriptionButton from '../src/components/TranscriptionButton';
 import TranscriptionText from '../src/components/TranscriptionText';
 import PatientChart from '../src/components/PatientChart';
-import '../src/App.css';  
+import '../src/App.css';
 
 function TranscriptionPage() {
+    const [transcription, setTranscription] = useState('');
+    const [patientDataList, setPatientDataList] = useState([]); // Store a list of patient data
+    const [selectedPatient, setSelectedPatient] = useState(null); // Track the selected patient
+
+    const handleTranscriptionSubmit = async (transcript) => {
+        try {
+            const response = await fetch('http://127.0.0.1:5000/process_transcription', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ transcription: transcript }),
+            });
+            const data = await response.json();
+
+            // Parse the patientData string into an object
+            if (data.patientData) {
+                const patientDataObject = JSON.parse(data.patientData);
+                console.log('Received patient data:', patientDataObject);
+
+                // Add the new patient data to the list
+                setPatientDataList(prevList => [...prevList, patientDataObject]);
+            } else {
+                console.error('No patientData found');
+            }
+        } catch (error) {
+            console.error('Error sending transcription:', error);
+        }
+    };
+
+    const selectPatientChart = (patientData) => {
+        setSelectedPatient(patientData);
+    };
+
     return (
-        <Container>
-            <Row>
-                <Col><TranscriptionButton /></Col>
-                <Col><TranscriptionText /></Col>
-                <Col><PatientChart /></Col>
+        <Container fluid>
+            <Row className="flex-nowrap">
+                <Col md={6} className="transcription-section">
+                    <TranscriptionText transcription={transcription} />
+                    <TranscriptionButton
+                        setTranscription={setTranscription}
+                        onStartRecording={() => setTranscription('')} // Reset transcription on start
+                        onStopRecording={handleTranscriptionSubmit}
+                    />
+                </Col>
+                <Col md={6} className="chart-section">
+                {selectedPatient && <PatientChart patientData={selectedPatient} />}
+                <DropdownButton id="dropdown-patient-list" title="Select Patient">
+                    {patientDataList.map((patient, index) => (
+                        <Dropdown.Item key={index} onClick={() => selectPatientChart(patient)}>
+                            {patient.name}
+                        </Dropdown.Item>
+                    ))}
+                </DropdownButton>
+            </Col>
             </Row>
         </Container>
     );

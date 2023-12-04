@@ -1,136 +1,131 @@
-/* src/styles.css */
-
-/* General styles */
-.app-header {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 2rem;
-  margin-top: 10px;
+/* src/App.css */
+* {
+  box-sizing: border-box;
 }
 
-body {
-  background-color: #ffffff;
-  font-family: 'San Francisco', Arial, sans-serif;
-  color: #333;  /* Dark text for contrast */
-}
-
-.container {
-  margin-top: 50px;
-  text-align: center;  /* Center the content */
-}
-
-/* TranscriptionButton styles */
-.transcription-button .btn {
-  font-size: 1.2rem;
-  padding: 10px 20px;
-  border: 2px solid #007BFF;  /* Outlined button style */
-  border-radius: 50px;  /* Rounded corners */
-  color: #007BFF;  /* Light blue color */
-  background-color: #ffffff;  /* White background */
-  cursor: pointer;
-  position: relative;  /* Relative positioning for ripple effect */
-  overflow: hidden;  /* Hide overflow for ripple effect */
-}
-
-.transcription-button .btn:hover {
-  background-color: #e6f7ff;  /* Light blue background on hover */
-}
-
-.transcription-button .btn:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+body, html {
   height: 100%;
-  background-color: rgba(0, 123, 255, 0.1);  /* Ripple effect color */
-  border-radius: 50px;  /* Rounded corners for ripple effect */
-  transform: scale(0);  /* Initial scale for ripple effect */
-  animation: ripple-animation 0.6s linear;  /* Ripple effect animation */
+  margin: 0;
+  font-family: 'San Francisco', Arial, sans-serif;
+  background-color: #f4f7f6;
+  color: #333;
 }
 
-@keyframes ripple-animation {
-  to {
-      transform: scale(4);  /* Final scale for ripple effect */
-      opacity: 0;  /* Fade out ripple effect */
-  }
+h1 {
+  text-align: center;
+  color: #4A90E2; 
+  font-size: 5rem; 
 }
 
-/* TranscriptionText styles */
+/* Containers */
+.container-fluid {
+  display: flex; 
+  justify-content: center; 
+  height: 100vh; 
+  padding: 0;
+  background-color: #f9fafc; 
+}
+
+.row {
+  flex-grow: 1; 
+  display: flex;
+  flex-wrap: nowrap;
+  max-width: 100%; 
+  margin: 10px auto; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1); 
+}
+
+/* Columns */
+.col {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  height: 100%;
+  padding: 20px; 
+}
+
+/* Left Section */
+.transcription-section {
+  flex: 1; 
+  justify-content: space-between;
+  background-color: #ffffff; 
+  border-right: 1px solid #e0e0e0; 
+}
+
+/* Right Section */
+.chart-section {
+  flex: 1; 
+  background-color: #f8f9fa; 
+}
+
+/* Transcription Text */
+.transcription-text {
+  width: 100%;
+}
+
 .transcription-text textarea {
   width: 100%;
-  height: 400px;
-  padding: 15px;
-  border-radius: 15px;  /* Rounded corners */
-  border: 1px solid #ced4da;
-  font-size: 1rem;
-  line-height: 1.5;
-  resize: none;
-  transition: border-color 0.3s ease;  /* Smooth border color transition */
+  height: 70%;
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0; 
+  padding: 10px; 
+  font-size: 16px; 
 }
 
-.transcription-text textarea:focus {
-  border-color: #007BFF;  /* Light blue border on focus */
-  outline: none;  /* Remove outline on focus */
+/* Transcription Buttons */
+.transcription-button {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  flex-direction: column; 
 }
 
+.transcription-button .btn {
+  width: auto; 
+  margin: 5px 10px;
+  padding: 10px 20px; 
+}
 
-/* PatientChart styles */
+/* Patient Chart */
 .patient-chart .card {
-  border-radius: 15px;  /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);  /* Box shadow for depth */
-  background-color: #f8f9fa;  /* Slightly different background color */
+  width: 100%;
+  height: calc(100vh - 100px); 
+  overflow-y: auto; 
+  background-color: #ffffff; 
+  border-radius: 5px; 
 }
 
 .patient-chart .card-header {
-  background-color: #007BFF;
-  color: #ffffff;
-  font-size: 1.2rem;
-  border-radius: 15px 15px 0 0;  /* Rounded corners */
+  background-color: #4A90E2; 
+  color: white;
+  font-size: 18px;
 }
 
-.patient-chart .card-body {
-  font-size: 1rem;
-  line-height: 1.5;
+/* Dropdown Styles */
+.dropdown-button {
+  width: 100%;
+  margin-top: 15px;
 }
 
-.patient-chart .collapse-header {
-  cursor: pointer;
-  transition: background-color 0.3s ease;  /* Smooth background color transition */
+.dropdown-menu {
+  width: 100%;
 }
 
-.patient-chart .collapse-header:hover {
-  background-color: #e6f7ff;  /* Light blue background on hover */
-}
-
-/* Responsive styles */
+/* Responsive design */
 @media (max-width: 768px) {
-  .container {
-      margin-top: 20px;
+  .row {
+    flex-direction: column;
+    align-items: stretch; 
   }
 
-  .transcription-button .btn,
-  .patient-chart .card-header {
-      font-size: 1rem;
+  .transcription-section, .chart-section {
+    width: 100%;
+    padding: 20px;
   }
 
-  .transcription-text textarea {
-      height: 200px;
+  .transcription-text textarea, .patient-chart .card {
+    height: auto;
   }
-}
-
-/* Loading animation */
-@keyframes revolving {
-  to {
-      transform: rotate(360deg);
-  }
-}
-
-.loading {
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #3498db;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  animation: revolving 2s linear infinite;
 }
