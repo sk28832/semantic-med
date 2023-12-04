@@ -7,12 +7,12 @@ import '../src/App.css';
 
 function TranscriptionPage() {
     const [transcription, setTranscription] = useState('');
-    const [patientDataList, setPatientDataList] = useState([]); // Store a list of patient data
-    const [selectedPatient, setSelectedPatient] = useState(null); // Track the selected patient
+    const [patientDataList, setPatientDataList] = useState([]); 
+    const [selectedPatient, setSelectedPatient] = useState(null); 
 
     const handleTranscriptionSubmit = async (transcript) => {
         try {
-            const response = await fetch('http://127.0.0.1:5000/process_transcription', {
+            const response = await fetch('https://semantic-med.herokuapp.com', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -10,8 +10,8 @@ function TranscriptionButton({ setTranscription, onStartRecording, onStopRecordi
     }
 
     const startListening = () => {
-        resetTranscript();  // Reset the transcript before starting a new recording
-        onStartRecording && onStartRecording(); // Call onStartRecording if provided
+        resetTranscript(); 
+        onStartRecording && onStartRecording();
         SpeechRecognition.startListening({ continuous: true });
     };
 
