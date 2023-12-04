@@ -12,7 +12,7 @@ function TranscriptionPage() {
 
     const handleTranscriptionSubmit = async (transcript) => {
         try {
-            const response = await fetch('https://semantic-med.herokuapp.com', {
+            const response = await fetch('https://semantic-med-e031886a95ed.herokuapp.com/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
