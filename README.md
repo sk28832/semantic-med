@@ -1,6 +1,5 @@
 # SemanticMed: Voice-Activated Notation Service for Healthcare Providers
 
-Here is a link to the live webpage: https://semantic-med-ai.vercel.app/
 
 <img width="1471" alt="Screenshot 2023-12-04 at 12 45 53 AM" src="https://github.com/sk28832/semantic-med/assets/33585911/5fc5ead9-3b65-400f-8c10-9044ed22c157">
 
